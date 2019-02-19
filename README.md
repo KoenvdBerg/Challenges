@@ -3,9 +3,11 @@ Coding challenges in Python
 
 # Maximum squares challenge:
 Here the aim of the challenge is to find a square of ones in a random binary matrix. For example:
+
 0 0 0 0 1 1 
 
 1 1 1 0 0 0
+
 1 1 1 0 1 1
 1 1 1 0 0 1
 0 0 1 1 0 0
