@@ -9,8 +9,11 @@ Here the aim of the challenge is to find a square of ones in a random binary mat
 1 1 1 0 0 0
 
 1 1 1 0 1 1
+
 1 1 1 0 0 1
+
 0 0 1 1 0 0
+
 The output here should be 9
 
 # Consensus challenge:
