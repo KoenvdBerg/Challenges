@@ -1,5 +1,24 @@
 #! usr/bin/env python 3
 
+"""
+Author: Koen van den Berg
+
+Explanation:
+
+Below a matrix of 6x6 consisting of 1s and 0s. The goal is to find the
+largest square of 1s in the matrix.
+
+0 0 0 0 1 1
+1 1 1 0 0 0
+1 1 1 0 1 1
+1 1 1 0 0 1
+0 0 1 1 0 0
+0 0 1 1 0 0
+
+The output here should be 9
+
+"""
+
 # imports:
 import random
 
