@@ -1,0 +1,101 @@
+* Challenges
+Coding challenges in Python
+
+** Genbank parsing challenge and finding upstream regions
+Genes consist of coding and non-coding DNA. The coding DNA consists of
+codons that encode amino acids. However, the region right before the
+gene (up to 100 DNA bases) encodes the 5' untranslated region
+(5'UTR). The aim of this script is to find this region and extract it
+from any genbank file. 
+
+The result is in genbank.py
+** Maximum squares challenge: Cube.py & maximal_square.py
+Here the aim of the challenge is to find a square of ones in a random binary matrix. For example:
+
+0 0 0 0 1 1 
+
+1 1 1 0 0 0
+
+1 1 1 0 1 1
+
+1 1 1 0 0 1
+
+0 0 1 1 0 0
+
+The output here should be 9
+
+The answers are found in the mentioned scripts. Cube.py is a later
+updated version that runs faster due to optimization using a while
+loop.
+
+** Autofill challenge
+The aim is to construct an autofill. It should first be able to create
+a database based on a set of words, an then use that database to fill
+the typed in part of a word automatically.
+
+The result are in Autofill.cs and Autofill.py
+** Consensus challenge:
+Given a matrix of DNA sequences, take a consensus strand and calculate the consensus matrix for each nucleotide
+GCAACT
+
+EXAMPLE:
+for the the input file below the output is as follows:
+
+*** Input
+>Rosalind_1
+
+ATCCAGCT
+
+>Rosalind_2
+
+GGGCAACT
+
+>Rosalind_3
+
+ATGGATCT
+
+>Rosalind_4
+
+AAGCAACC
+
+>Rosalind_5
+
+TTGGAACT
+
+>Rosalind_6
+
+ATGCCATT
+
+>Rosalind_7
+
+ATGGCACT
+
+
+
+*** output
+DNA strings:
+
+ATCCAGCT
+
+GGGCAACT
+
+ATGGATCT
+
+AAGCAACC
+
+TTGGAACT
+
+ATGCCATT
+
+ATGGCACT
+
+A       5 1 0 0 5 5 0 0
+
+C       0 0 1 4 2 0 6 1
+
+G       1 1 6 3 0 1 0 0
+
+T       1 5 0 0 0 1 1 6
+
+The following consenus strand has been found: ATGCAACT
+
