@@ -30,21 +30,23 @@ The winner is player A with 7 cells
 """
 import random
 
+# GLOBAL PARAMETERS:
 PLAYERS = 2
 ROWSIZE = 3
 COLSIZE = 4
 TOTALCELLS = ROWSIZE * COLSIZE
 
 
+# FUNCTIONAL PARADIGM FUNCTIONS:
 def neighbors(pos: int) -> list:
     """
     retrieves the neighbors at position pos
     """
     # below and above:
-    result = [pos - ROWSIZE, pos + ROWSIZE]
-    if pos % ROWSIZE != 0:  # left
+    result = [pos - COLSIZE, pos + COLSIZE]
+    if pos % COLSIZE != 0:  # left
         result.append(pos - 1)
-    if (pos + 1) % ROWSIZE != 0:  # right
+    if (pos + 1) % COLSIZE != 0:  # right
         result.append(pos + 1)
     result = [i for i in result
               if 0 <= i < TOTALCELLS]
@@ -59,19 +61,18 @@ def get_values(positions: list, field: list) -> list:
     return values
 
 
-def walk(start_pos: int, start_val: int, field: list,
-         traversed: list = [], acc: int = 0):
+def walk(start_pos: int, player: int, field: list, traversed: list):
     """
-    steps through the grid from starting position
+    walks through the playing field from starting position
     """
     surrounding = neighbors(start_pos)
     vals = get_values(surrounding, field)
     for v, i in zip(vals, surrounding):
-        if v == start_val and i not in traversed:
+        if v == player and i not in traversed:
             traversed.append(i)
-            acc = walk(start_pos=i, start_val=start_val, field=field,
-                       traversed=traversed, acc=acc + 1)
-    return acc
+            walk(start_pos=i, player=player, field=field,
+                 traversed=traversed)
+    return traversed
 
 
 def get_player_name(player: int) -> str:
@@ -86,11 +87,14 @@ def final_score(field: list) -> dict:
     retrieves the final score for a playing field
     """
     scores = {i: 0 for i in range(0, PLAYERS)}
-    for i in range(0, TOTALCELLS):
-        player = get_values([i], field)[0]
-        score = walk(i, player, field)
-        if score > scores[player]:
-            scores[player] = score
+    seen = []
+    for i, player in enumerate(field):
+        if i not in seen:
+            traversed = walk(i, player, field, [])
+            seen += traversed
+            score = len(traversed)
+            if score > scores[player]:
+                scores[player] = score
     return scores
 
 
@@ -105,18 +109,27 @@ def determine_winner(scores: dict) -> str:
            f'cells'
 
 
-def generate_field():
+# IMPERATIVE PARADIGM FUNCTIONS:
+def generate_playing_field():
     """
     generates a random playing field and prints to standard out
     """
-    random_field = [random.choice([i for i in range(PLAYERS)])
-                    for i in range(TOTALCELLS)]
-    for i in range(0, len(random_field), ROWSIZE):
-        print([get_player_name(x) for x in random_field[i: i + ROWSIZE]])
+    choices = list(range(PLAYERS))
+    random_field = random.choices(population=choices,
+                                  k=TOTALCELLS)
     return random_field
 
 
+def print_playing_field(field: list) -> None:
+    """
+    prints the playing field to standard out
+    """
+    for i in range(0, TOTALCELLS, COLSIZE):
+        print([get_player_name(x) for x in field[i: i + COLSIZE]])
+
+
 if __name__ == '__main__':
-    playing_field = generate_field()
+    playing_field = generate_playing_field()
+    print_playing_field(playing_field)
     final_scores = final_score(field=playing_field)
     print(determine_winner(final_scores))
