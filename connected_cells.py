@@ -2,6 +2,9 @@
 Code challenge: find the winning player
 By: Koen van den Berg
 
+The article that describes the code in this script can be found here:
+https://medium.com/@k.vandenberg/learn-functional-programming-in-python-with-this-coding-challenge-e3d4fb5d4978
+
 The problem that is presented in this script is as follows: an N amount of
 players is positioned in a field of X columns and Y rows. Given such a random
 field, can you find the player that occupies the most consecutive cells in
